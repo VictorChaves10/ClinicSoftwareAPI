@@ -10,6 +10,18 @@ namespace ClinicSoftware.Domain.Entities.Pessoas
         public string Telefone { get; private set; } = telefone;
         public string Endereco { get; private set; } = endereco;
         public PessoaTipo Tipo { get; private set; } = pessoaTipo;
+
+
+        public void AtualizarDados(string novoNome, string novoEmail, string novoTelefone, string novoEndereco)
+        {
+            if (string.IsNullOrWhiteSpace(novoNome))
+                throw new ArgumentException("O nome não pode ser vazio.");
+            
+            Nome = novoNome;
+            Email = novoEmail;
+            Telefone = novoTelefone;
+            Endereco = novoEndereco;
+        }
     }
 
 }
