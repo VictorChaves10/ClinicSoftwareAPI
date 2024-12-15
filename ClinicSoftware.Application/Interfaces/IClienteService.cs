@@ -4,7 +4,7 @@ namespace ClinicSoftware.Application.Interfaces;
 
 public interface IClienteService
 {
-    Task<IEnumerable<ClienteDto>> GetClientes(ClienteDto cliente);
+    Task<IEnumerable<ClienteDto>> GetClientes();
     Task<ClienteDto> GetClienteById(int id);
     Task Add(ClienteDto cliente);
     Task Delete(ClienteDto cliente);

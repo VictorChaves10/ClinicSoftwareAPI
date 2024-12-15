@@ -5,6 +5,8 @@ namespace ClinicSoftware.Application.DTOs;
 
 public class ClienteDto
 {
+    public long Id { get; set; }
+
     // Dados da pessoa
     [Required(ErrorMessage = "O campo Nome é obrigatório.")]
     [StringLength(100, ErrorMessage = "O campo Nome deve ter no máximo 100 caracteres.")]

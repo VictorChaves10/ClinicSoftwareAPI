@@ -1,24 +1,32 @@
 ﻿using ClinicSoftware.Domain.Entities.Cliente;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicSoftware.Infrastructure.EntitiesConfiguration
 {
     public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
     {
-        public void Configure(EntityTypeBuilder<Cliente> builder)
+        public void Configure(EntityTypeBuilder<Cliente> entity)
         {
-            builder.HasKey(c => c.Id);
-            builder.Property(c => c.DataCadastro);
-            
-            builder.HasOne(c => c.Pessoa)
-                   .WithOne()
-                   .HasForeignKey<Cliente>(c => c.PessoaId);
+            entity.ToTable("Clientes");
+
+            entity.HasKey(c => c.Id);
+
+            entity.Property(c => c.Nome).IsRequired().HasMaxLength(150);
+            entity.Property(c => c.Email).HasMaxLength(100);
+            entity.Property(c => c.Telefone).IsRequired().HasMaxLength(20);
+            entity.Property(c => c.Endereco).HasMaxLength(250);
+
+            entity.Property(c => c.PessoaTipo).IsRequired();
+
+            // Pessoa Física
+            entity.Property(c => c.CPF).HasMaxLength(11);
+            entity.Property(c => c.DataNascimento);
+
+            // Pessoa Jurídica
+            entity.Property(c => c.CNPJ).HasMaxLength(14);
+            entity.Property(c => c.RazaoSocial).HasMaxLength(150);
+            entity.Property(c => c.NomeFantasia).HasMaxLength(150);
         }
     }
 }
