@@ -1,8 +1,7 @@
-﻿namespace ClinicSoftware.Domain.Interfaces
+﻿namespace ClinicSoftware.Domain.Interfaces;
+
+public interface IUnitOfWork
 {
-    public interface IUnitOfWork
-    {
-        IClienteRepository ClienteRepository { get; }
-        Task CommitAsync();
-    }
+    IClienteRepository ClienteRepository { get; }
+    Task CommitAsync();
 }

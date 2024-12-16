@@ -1,6 +1,4 @@
-﻿using ClinicSoftware.Domain.Enums;
-
-namespace ClinicSoftware.Domain.Entities.Cliente;
+﻿namespace ClinicSoftware.Domain.Entities.Cliente;
 
 public class Cliente
 {

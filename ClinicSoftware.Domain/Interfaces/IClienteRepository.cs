@@ -1,8 +1,7 @@
 ﻿using ClinicSoftware.Domain.Entities.Cliente;
 
-namespace ClinicSoftware.Domain.Interfaces
+namespace ClinicSoftware.Domain.Interfaces;
+
+public interface IClienteRepository : IRepositoryBase<Cliente>
 {
-    public interface IClienteRepository : IRepositoryBase<Cliente>
-    {
-    }
 }
