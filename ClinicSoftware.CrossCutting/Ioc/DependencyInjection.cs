@@ -17,10 +17,13 @@ namespace ClinicSoftware.CrossCutting.Ioc
             services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<IFuncionarioService, FuncionarioService>();
+
             services.AddAutoMapper(typeof(DomainToDtoMapping));
 
             return services;

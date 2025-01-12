@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using ClinicSoftware.Application.Dtos;
 using ClinicSoftware.Application.DTOs;
 using ClinicSoftware.Domain.Entities.Cliente;
+using ClinicSoftware.Domain.Entities.Funcionarios;
 
 namespace ClinicSoftware.Application.Mappings;
 
@@ -9,5 +11,8 @@ public class DomainToDtoMapping : Profile
     public DomainToDtoMapping()
     {
         CreateMap<Cliente, ClienteDto>().ReverseMap();
+        
+        CreateMap<Funcionario, FuncionarioDto>().ReverseMap();
     }
+
 }

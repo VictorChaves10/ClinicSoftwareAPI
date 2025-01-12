@@ -7,48 +7,35 @@ public class Cliente
     public string Email { get; private set; }
     public string Telefone { get; private set; }
     public string Endereco { get; private set; }
-
-    // Dados específicos para pessoa física
     public string CPF { get; private set; }
     public DateTime? DataNascimento { get; private set; }
+    public DateTime DataCadastro { get; private set; }
 
-    private Cliente() { }
+    public Cliente() { }
 
-    // Construtor para Pessoa Física
-    public Cliente(string nome, string email, string telefone, string endereco, string cpf, DateTime dataNascimento)
+    public void Validar()
     {
-        Nome = nome;
-        Email = email;
-        Telefone = telefone;
-        Endereco = endereco;
-        CPF = cpf;
-        DataNascimento = dataNascimento;
-
-        Validar();
-    }
-
-    private void Validar()
-    {
-        if (string.IsNullOrWhiteSpace(Nome))
-            throw new ArgumentException("O nome é obrigatório.");
-
         if (string.IsNullOrWhiteSpace(Nome))
             throw new ArgumentException("O nome é obrigatório.");
 
         if (string.IsNullOrWhiteSpace(Telefone))
             throw new ArgumentException("O telefone é obrigatório.");
+
+        if (DataCadastro == default)
+            DataCadastro = DateTime.Now;
     }
 
-    // Atualização de dados
-    public void AtualizarDados(string nome, string email, string telefone, string endereco, string cpf, DateTime dataNascimento)
+    public void Atualizar(string nome, string email, string telefone, string endereco, string cpf, DateTime? datanascimento)
     {
         Nome = nome;
         Email = email;
         Telefone = telefone;
         Endereco = endereco;
         CPF = cpf;
-        DataNascimento = dataNascimento;
 
-        Validar();
+        if (datanascimento.HasValue)
+        {
+            DataNascimento = datanascimento.Value;
+        }
     }
 }

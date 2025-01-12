@@ -14,48 +14,52 @@ public class ClienteService(IUnitOfWork unitOfWork, IMapper mapper) : IClienteSe
     public async Task<IEnumerable<ClienteDto>> GetClientes()
     {
         var clientes = await _unitOfWork.ClienteRepository.GetAllAsync();
-
-        ArgumentNullException.ThrowIfNull(clientes);
-
         var clientesDto = _mapper.Map<IEnumerable<ClienteDto>>(clientes);
 
         return clientesDto;
     }
 
-    public async Task<ClienteDto> GetClienteById(int id)
+    public async Task<ClienteDto> GetClienteById(long id)
     {
         var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == id);
-
-        ArgumentNullException.ThrowIfNull(cliente);
-
-        var clienteDto = _mapper.Map<ClienteDto>(cliente);
-
-        return clienteDto;
+        return _mapper.Map<ClienteDto>(cliente);
     }
 
     public async Task Add(ClienteDto clienteDto)
     {
-        ArgumentNullException.ThrowIfNull(clienteDto);
-
         var cliente = _mapper.Map<Cliente>(clienteDto);
+        cliente.Validar();
 
         _unitOfWork.ClienteRepository.Create(cliente);
         await _unitOfWork.CommitAsync();
+
+        clienteDto.Id = cliente.Id;
     }
 
     public async Task Update(ClienteDto clienteDto)
     {
-        var cliente = _mapper.Map<Cliente>(clienteDto);
+        var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == clienteDto.Id);
+
+        if (cliente == null)
+            throw new ArgumentException("Cliente não encontrado.");
+
+        cliente.Atualizar(nome: clienteDto.Nome,
+                          email: clienteDto.Email,
+                          telefone: clienteDto.Telefone,
+                          endereco: clienteDto.Endereco,
+                          cpf: clienteDto.CPF,
+                          datanascimento: clienteDto.DataNascimento ?? cliente.DataNascimento
+         );
+
+        cliente.Validar();
 
         _unitOfWork.ClienteRepository.Update(cliente);
         await _unitOfWork.CommitAsync();
     }
 
-    public async Task Delete(ClienteDto clienteDto)
+    public async Task Delete(long id)
     {
-        var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == clienteDto.Id);
-
-        ArgumentNullException.ThrowIfNull(cliente);
+        var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == id);
 
         _unitOfWork.ClienteRepository.Delete(cliente);
         await _unitOfWork.CommitAsync();
