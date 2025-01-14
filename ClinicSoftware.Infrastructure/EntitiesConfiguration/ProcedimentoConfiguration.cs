@@ -1,5 +1,4 @@
-﻿using ClinicSoftware.Domain.Entities.Funcionarios;
-using ClinicSoftware.Domain.Entities.Procedimentos;
+﻿using ClinicSoftware.Domain.Entities.Procedimentos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,7 +23,6 @@ namespace ClinicSoftware.Infrastructure.EntitiesConfiguration
             entity.Property(p => p.Preco)
                   .IsRequired()
                   .HasColumnType("decimal(18,2)");
-
 
         }
     }

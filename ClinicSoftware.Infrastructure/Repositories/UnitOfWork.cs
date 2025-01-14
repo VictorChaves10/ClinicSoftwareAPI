@@ -9,6 +9,7 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     
     private IClienteRepository _clienteRepository;
     private IFuncionarioRepository _funcionarioRepository;
+    private IProcedimentoRepository _procedimentoRepository;
 
     public IClienteRepository ClienteRepository
     {
@@ -23,6 +24,14 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
         get
         {
             return _funcionarioRepository ??= new FuncionarioRepository(_context);
+        }
+    }
+
+    public IProcedimentoRepository ProcedimentoRepository 
+    {
+        get 
+        { 
+            return _procedimentoRepository ??= new ProcedimentoRepository(_context);
         }
     }
 

@@ -1,6 +1,8 @@
-﻿namespace ClinicSoftware.Domain.Interfaces
+﻿using ClinicSoftware.Domain.Entities.Procedimentos;
+
+namespace ClinicSoftware.Domain.Interfaces
 {
-    public interface IProcedimentoRepository
+    public interface IProcedimentoRepository : IRepositoryBase<Procedimento>
     {
     }
 }

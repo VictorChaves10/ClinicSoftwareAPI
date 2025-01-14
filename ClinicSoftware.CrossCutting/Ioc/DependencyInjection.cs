@@ -23,6 +23,7 @@ namespace ClinicSoftware.CrossCutting.Ioc
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IFuncionarioService, FuncionarioService>();
+            services.AddScoped<IProcedimentoRepository, ProcedimentoRepository>();
 
             services.AddAutoMapper(typeof(DomainToDtoMapping));
 
