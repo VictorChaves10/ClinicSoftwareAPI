@@ -18,7 +18,7 @@ namespace ClinicSoftware.Application.Services
             return _mapper.Map<IEnumerable<ProcedimentoDto>>(procedimentos);
         }
 
-        public async Task<ProcedimentoDto> GetProcedimentoDtoId(long id)
+        public async Task<ProcedimentoDto> GetProcedimentoById(long id)
         {
             var procedimento = await _unitOfWork.ProcedimentoRepository.GetAsync(x => x.Id == id);
             return _mapper.Map<ProcedimentoDto>(procedimento);
