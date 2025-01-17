@@ -4,27 +4,16 @@ using System.Text.Json.Serialization;
 
 namespace ClinicSoftware.Domain.Entities.Atendimentos
 {
-    public class AtendimentoXProcedimento
+    public class AtendimentoProcedimento
     {
         public long Id { get; set; }
-
         public long IdAtendimento { get; set; }
-
         public long IdProcedimento { get; set; }
-
         public long IdFuncionario { get; set; }
-
         public int Quantidade { get; set; }
-
-        public decimal Subtotal { get; set; }
-
-        [JsonIgnore]
+        public decimal Subtotal => Quantidade * (Procedimento?.Preco ?? 0);
         public virtual Atendimento Atendimento { get; set; }
-
-        [JsonIgnore]
         public virtual Procedimento Procedimento { get; set; }
-        
-        [JsonIgnore]
         public virtual Funcionario Funcionario { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ClinicSoftware.Domain.Entities.Cliente;
+﻿namespace ClinicSoftware.Domain.Entities.Clientes;
 
 public class Cliente
 {

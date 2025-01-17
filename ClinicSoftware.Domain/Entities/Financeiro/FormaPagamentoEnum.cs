@@ -1,6 +1,6 @@
 ﻿namespace ClinicSoftware.Domain.Entities.Financeiro
 {
-    public enum FormaDePagamentoEnum
+    public enum FormaPagamentoEnum
     {
         Dinheiro = 1,
         CartaoDeCredito = 2,
