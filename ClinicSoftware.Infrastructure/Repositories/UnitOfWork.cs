@@ -10,6 +10,8 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     private IClienteRepository _clienteRepository;
     private IFuncionarioRepository _funcionarioRepository;
     private IProcedimentoRepository _procedimentoRepository;
+    private IFinanceiroRepository _financeiroRepository;
+    private IAtendimentoRepository _atendimentoRepository;
 
     public IClienteRepository ClienteRepository
     {
@@ -32,6 +34,21 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
         get 
         { 
             return _procedimentoRepository ??= new ProcedimentoRepository(_context);
+        }
+    }
+
+    public IFinanceiroRepository FinanceiroRepository
+    {
+        get
+        {
+            return _financeiroRepository ??= new FinanceiroRepository(_context);
+        }
+    }
+
+    public IAtendimentoRepository AtendimentoRepository
+    {
+        get {
+            return _atendimentoRepository ??= new AtendimentoRepository(_context);
         }
     }
 

@@ -1,6 +1,5 @@
 ﻿using ClinicSoftware.Domain.Entities.Funcionarios;
 using ClinicSoftware.Domain.Entities.Procedimentos;
-using System.Text.Json.Serialization;
 
 namespace ClinicSoftware.Domain.Entities.Atendimentos
 {
@@ -11,9 +10,29 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
         public long IdProcedimento { get; set; }
         public long IdFuncionario { get; set; }
         public int Quantidade { get; set; }
-        public decimal Subtotal => Quantidade * (Procedimento?.Preco ?? 0);
+        public decimal Subtotal { get; set; }
         public virtual Atendimento Atendimento { get; set; }
         public virtual Procedimento Procedimento { get; set; }
         public virtual Funcionario Funcionario { get; set; }
+
+        public void Validar()
+        {
+            if (IdAtendimento == 0)
+                throw new ArgumentException("É obrigatório informar o atendimento");
+
+            if (IdProcedimento == 0)
+                throw new ArgumentException("É obrigatório informar o procedimento");
+
+            if (IdFuncionario == 0)
+                throw new ArgumentException("É obrigatório informar o funcionário");
+
+            if (Quantidade == 0)
+                throw new ArgumentException("É obrigatório informar a quantidade");
+        }
+
+        public void CalcularSubtotal()
+        {
+            Subtotal = Procedimento.Preco * Quantidade;
+        }
     }
 }

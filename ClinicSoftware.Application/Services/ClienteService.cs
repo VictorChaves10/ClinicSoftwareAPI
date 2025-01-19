@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ClinicSoftware.Application.DTOs;
 using ClinicSoftware.Application.Interfaces;
-using ClinicSoftware.Domain.Entities.Cliente;
+using ClinicSoftware.Domain.Entities.Clientes;
 using ClinicSoftware.Domain.Interfaces;
 
 namespace ClinicSoftware.Application.Services;

@@ -19,12 +19,15 @@ namespace ClinicSoftware.CrossCutting.Ioc
 
             services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IClienteService, ClienteService>();
-            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IFuncionarioService, FuncionarioService>();
-            services.AddScoped<IProcedimentoRepository, ProcedimentoRepository>();
             services.AddScoped<IProcedimentoService, ProcedimentoService>();
+            services.AddScoped<IAtendimentoService, AtendimentoService>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<IProcedimentoRepository, ProcedimentoRepository>();
+            services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
+            services.AddScoped<IFinanceiroRepository, FinanceiroRepository>();
 
             services.AddAutoMapper(typeof(DomainToDtoMapping));
 
