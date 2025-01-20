@@ -30,12 +30,18 @@ namespace ClinicSoftware.Application.Services
                 throw new ArgumentException("Cliente não encontrado.");
 
             var pagamento = _mapper.Map<Pagamento>(atendimentoDto.Pagamento);
+
+            var idsProcedimentos = atendimentoDto.Procedimentos.Select(x => x.IdProcedimento).ToList();
+            var procedimentos = _unitOfWork.ProcedimentoRepository.GetAsync(x => idsProcedimentos.Contains(x.Id));
+
             var atendimentoProcedimentos = _mapper.Map<List<AtendimentoProcedimento>>(atendimentoDto.Procedimentos);
 
-            foreach (var atendimentoProcedimento in atendimentoProcedimentos)
+            foreach (var item in atendimentoProcedimentos)
             {
-                atendimentoProcedimento.Validar();
-                atendimentoProcedimento.CalcularSubtotal();
+                procedimentos.FirstOrDefault(x => x.Id == atendimentoProcedimento.IdProcedimento);
+
+                item.Validar();
+                item.CalcularSubtotal();
             }
 
             var atendimento = new Atendimento

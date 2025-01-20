@@ -17,9 +17,6 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
 
         public void Validar()
         {
-            if (IdAtendimento == 0)
-                throw new ArgumentException("É obrigatório informar o atendimento");
-
             if (IdProcedimento == 0)
                 throw new ArgumentException("É obrigatório informar o procedimento");
 
