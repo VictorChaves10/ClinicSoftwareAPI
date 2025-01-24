@@ -15,18 +15,6 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
         public virtual Procedimento Procedimento { get; set; }
         public virtual Funcionario Funcionario { get; set; }
 
-        public void Validar()
-        {
-            if (IdProcedimento == 0)
-                throw new ArgumentException("É obrigatório informar o procedimento");
-
-            if (IdFuncionario == 0)
-                throw new ArgumentException("É obrigatório informar o funcionário");
-
-            if (Quantidade == 0)
-                throw new ArgumentException("É obrigatório informar a quantidade");
-        }
-
         public void CalcularSubtotal()
         {
             Subtotal = Procedimento.Preco * Quantidade;

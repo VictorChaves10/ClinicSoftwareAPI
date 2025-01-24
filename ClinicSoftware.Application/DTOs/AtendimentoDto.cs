@@ -4,10 +4,9 @@ namespace ClinicSoftware.Application.DTOs
 {
     public record AtendimentoDto
     {
-        [Required(ErrorMessage = "O Id é obrigatório.")]
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "O Id do Cliente é obrigatório.")]
+        [Required(ErrorMessage = "É obrigatório informar um cliente.")]
         public long IdCliente { get; set; }
 
         [Required(ErrorMessage = "A Data e Hora do Atendimento são obrigatórias.")]

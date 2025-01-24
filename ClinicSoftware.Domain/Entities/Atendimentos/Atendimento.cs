@@ -7,10 +7,9 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
     {
         public Atendimento()
         {
-            Procedimentos = new List<AtendimentoProcedimento>();
             DataRegistro = DateTime.Now;
-            Validar();
         }
+
         public long Id { get; set; }
         public long IdCliente { get; set; }
         public DateTime DataHoraAtendimento { get; set; }
@@ -21,18 +20,22 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
         public virtual Cliente Cliente { get; set; }
         public virtual Pagamento Pagamento { get; set; }
         public virtual Desconto Desconto { get; set; }
-        public virtual ICollection<AtendimentoProcedimento> Procedimentos { get; set; }
+        public virtual ICollection<AtendimentoProcedimento> Procedimentos { get; private set; }
 
-        public void Validar()
+        public void AdicionarProcedimento(AtendimentoProcedimento procedimento)
         {
-            if (IdCliente == 0)
-                throw new ArgumentException("O cliente é obrigatório.");
+            if (procedimento == null)
+                throw new ArgumentNullException(nameof(procedimento));
 
-            if (IdPagamento == 0)
-                throw new ArgumentException("O pagamento é obrigatório.");
+            if (Procedimentos.Any(p => p.Id == procedimento.Id))
+                throw new InvalidOperationException("Procedimento já adicionado.");
 
-            if (DataRegistro == default)
-                DataRegistro = DateTime.Now;
+            Procedimentos.Add(procedimento);
+        }
+
+        public void RemoverProcedimento(AtendimentoProcedimento atendimentoProcedimento)
+        {
+            Procedimentos.Remove(atendimentoProcedimento);
         }
     }
 }
