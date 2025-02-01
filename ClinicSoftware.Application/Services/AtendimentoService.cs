@@ -24,9 +24,7 @@ namespace ClinicSoftware.Application.Services
         public async Task<AtendimentoDto> GetAtendimentoByIdAsync(long id)
         {
             var atendimento = await _unitOfWork.AtendimentoRepository.ObterAtendimentoPorIdAsync(id);
-
             var atendimentoDto = _mapper.Map<AtendimentoDto>(atendimento);
-
             return atendimentoDto;
         }
 
