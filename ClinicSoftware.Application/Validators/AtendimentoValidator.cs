@@ -12,9 +12,7 @@ public class AtendimentoValidator : AbstractValidator<AtendimentoDto>
         _unitOfWork = unitOfWork;
 
         RuleFor(a => a.IdCliente)
-            .NotEmpty()
-            .WithMessage("Informar o Cliente é obrigatório.")
-            .MustAsync(async (id, cancellation) => await ClienteInexistenteAsync(id))
+            .Must(ClienteInexistente)
             .WithMessage("Não foi encontrado o cliente informado.");
 
         RuleFor(a => a.Procedimentos)
@@ -22,9 +20,9 @@ public class AtendimentoValidator : AbstractValidator<AtendimentoDto>
             .WithMessage("É necessário informar ao menos um procedimento.");
     }
 
-    private async Task<bool> ClienteInexistenteAsync(long id)
+    private bool ClienteInexistente(long id)
     {
-        var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == id);
+        var cliente = _unitOfWork.ClienteRepository.GetAsync(x => x.Id == id);
         return cliente != null;
     }
 }

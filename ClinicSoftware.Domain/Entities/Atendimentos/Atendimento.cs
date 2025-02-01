@@ -15,27 +15,18 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
         public DateTime DataHoraAtendimento { get; set; }
         public DateTime DataRegistro { get; set; }
         public string Observacao { get; set; }
-        public long IdPagamento { get; set; }
-        public long? IdDesconto { get; set; }
         public virtual Cliente Cliente { get; set; }
-        public virtual Pagamento Pagamento { get; set; }
-        public virtual Desconto Desconto { get; set; }
-        public virtual ICollection<AtendimentoProcedimento> Procedimentos { get; private set; }
+        public virtual ICollection<AtendimentoProcedimento> Procedimentos { get; set; } = [];
+        public virtual ICollection<PagamentoAtendimento> Pagamentos { get; set; } = [];
 
         public void AdicionarProcedimento(AtendimentoProcedimento procedimento)
         {
-            if (procedimento == null)
-                throw new ArgumentNullException(nameof(procedimento));
-
-            if (Procedimentos.Any(p => p.Id == procedimento.Id))
-                throw new InvalidOperationException("Procedimento já adicionado.");
-
             Procedimentos.Add(procedimento);
         }
 
-        public void RemoverProcedimento(AtendimentoProcedimento atendimentoProcedimento)
+        public void RemoverProcedimento(AtendimentoProcedimento procedimento)
         {
-            Procedimentos.Remove(atendimentoProcedimento);
+            Procedimentos.Remove(procedimento);
         }
     }
 }

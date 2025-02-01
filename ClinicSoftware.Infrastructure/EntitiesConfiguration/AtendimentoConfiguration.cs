@@ -29,21 +29,15 @@ namespace ClinicSoftware.Infrastructure.EntitiesConfiguration
                    .OnDelete(DeleteBehavior.Restrict)
                    .IsRequired();
 
-            builder.HasOne(a => a.Pagamento)
-                   .WithMany()
-                   .HasForeignKey(a => a.IdPagamento)
-                   .OnDelete(DeleteBehavior.Restrict)
-                   .IsRequired();
-
-            builder.HasOne(a => a.Desconto)
-                   .WithMany()
-                   .HasForeignKey(a => a.IdDesconto)
-                   .OnDelete(DeleteBehavior.Restrict);
-
             builder.HasMany(a => a.Procedimentos)
                    .WithOne(p => p.Atendimento)
                    .HasForeignKey(p => p.IdAtendimento)
                    .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasMany(a => a.Pagamentos)
+                  .WithOne(p => p.Atendimento)
+                  .HasForeignKey(p => p.IdAtendimento)
+                  .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

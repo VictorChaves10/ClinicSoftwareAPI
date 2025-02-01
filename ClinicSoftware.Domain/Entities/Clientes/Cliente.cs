@@ -34,8 +34,7 @@ public class Cliente
         CPF = cpf;
 
         if (datanascimento.HasValue)
-        {
             DataNascimento = datanascimento.Value;
-        }
+
     }
 }

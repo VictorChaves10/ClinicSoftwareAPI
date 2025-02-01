@@ -13,16 +13,12 @@ public class DomainToDtoMapping : Profile
 {
     public DomainToDtoMapping()
     {
-        CreateMap<Cliente, ClienteDto>().ReverseMap();
-        
+        CreateMap<Cliente, ClienteDto>().ReverseMap();        
         CreateMap<Funcionario, FuncionarioDto>().ReverseMap();
-
         CreateMap<Procedimento, ProcedimentoDto>().ReverseMap();
-
-        CreateMap<Pagamento, PagamentoDto>().ReverseMap();
-
+        CreateMap<Atendimento, AtendimentoDto>().ReverseMap();
         CreateMap<AtendimentoProcedimento, AtendimentoProcedimentoDto>().ReverseMap();
-
+        CreateMap<PagamentoAtendimento, PagamentoAtendimentoDto>().ReverseMap();
     }
 
 }

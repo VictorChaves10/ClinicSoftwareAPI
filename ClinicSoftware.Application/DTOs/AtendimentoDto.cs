@@ -15,10 +15,9 @@ namespace ClinicSoftware.Application.DTOs
         [StringLength(500, ErrorMessage = "A Observação pode ter no máximo 500 caracteres.")]
         public string Observacao { get; set; }
 
-        [Required(ErrorMessage = "O pagamento é obrigatório.")]
-        public PagamentoDto Pagamento { get; set; }
+        [MinLength(1, ErrorMessage = "Deve haver ao menos um pagamento.")]
+        public List<PagamentoAtendimentoDto> Pagamentos { get; set; }      
 
-        [Required(ErrorMessage = "Ao menos um procedimento é obrigatório.")]
         [MinLength(1, ErrorMessage = "Deve haver ao menos um procedimento.")]
         public List<AtendimentoProcedimentoDto> Procedimentos { get; set; }
     }

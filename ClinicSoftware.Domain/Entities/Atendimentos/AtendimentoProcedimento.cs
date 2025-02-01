@@ -10,14 +10,13 @@ namespace ClinicSoftware.Domain.Entities.Atendimentos
         public long IdProcedimento { get; set; }
         public long IdFuncionario { get; set; }
         public int Quantidade { get; set; }
-        public decimal Subtotal { get; set; }
         public virtual Atendimento Atendimento { get; set; }
         public virtual Procedimento Procedimento { get; set; }
         public virtual Funcionario Funcionario { get; set; }
 
-        public void CalcularSubtotal()
+        public decimal CalcularSubtotal()
         {
-            Subtotal = Procedimento.Preco * Quantidade;
+            return Procedimento.Preco * Quantidade;
         }
     }
 }

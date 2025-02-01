@@ -14,8 +14,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Procedimento> Procedimentos { get; set; }
     public DbSet<Atendimento> Atendimentos { get; set; }
     public DbSet<AtendimentoProcedimento> AtendimentoProcedimentos { get; set; }
-    public DbSet<Pagamento> Pagamentos{ get; set; }
-    public DbSet<Desconto> Descontos { get; set; }
+    public DbSet<PagamentoAtendimento> PagamentosAtendimentos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

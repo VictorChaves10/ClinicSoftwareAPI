@@ -1,4 +1,5 @@
-﻿using ClinicSoftware.Application.Interfaces;
+﻿using ClinicSoftware.Application.Factories;
+using ClinicSoftware.Application.Interfaces;
 using ClinicSoftware.Application.Mappings;
 using ClinicSoftware.Application.Services;
 using ClinicSoftware.Application.Validators;
@@ -29,6 +30,7 @@ namespace ClinicSoftware.CrossCutting.Ioc
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<IProcedimentoService, ProcedimentoService>();
             services.AddScoped<IAtendimentoService, AtendimentoService>();
+            services.AddScoped<IAtendimentoFactory, AtendimentoFactory>();
             #endregion
 
             #region Repository

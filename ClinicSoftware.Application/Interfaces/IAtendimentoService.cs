@@ -6,5 +6,7 @@ namespace ClinicSoftware.Application.Interfaces
     {
         
         Task<AtendimentoDto> AddAtendimentoAsync(AtendimentoDto atendimentoDto);
+
+        Task<AtendimentoDto> GetAtendimentoByIdAsync(long id);
     }
 }

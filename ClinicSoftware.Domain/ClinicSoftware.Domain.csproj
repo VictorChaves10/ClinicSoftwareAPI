@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Factory\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 
