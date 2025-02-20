@@ -1,13 +1,17 @@
-using ClinicSoftware.Application.Validators;
 using ClinicSoftware.CrossCutting.Ioc;
-using FluentValidation;
+using ClinicSoftwareAPI.Filters;
 using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(ApiExceptionFilter));
+    options.Filters.Add<ForeignKeyConstraintExceptionFilter>();
+});
+
 builder.Services.AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
 

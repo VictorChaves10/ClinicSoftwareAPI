@@ -61,6 +61,9 @@ public class ClienteService(IUnitOfWork unitOfWork, IMapper mapper) : IClienteSe
     {
         var cliente = await _unitOfWork.ClienteRepository.GetAsync(x => x.Id == id);
 
+        if (cliente == null)
+            throw new KeyNotFoundException("Cliente não encontrado.");
+
         _unitOfWork.ClienteRepository.Delete(cliente);
         await _unitOfWork.CommitAsync();
     }

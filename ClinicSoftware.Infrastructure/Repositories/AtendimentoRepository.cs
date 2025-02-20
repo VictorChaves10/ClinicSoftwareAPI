@@ -23,10 +23,10 @@ namespace ClinicSoftware.Infrastructure.Repositories
         public async Task<Atendimento> ObterAtendimentoPorIdAsync(long id)
         {
             var atendimento = await _context.Atendimentos
-                                            .Include(x => x.Procedimentos)
-                                            .Include(x => x.Pagamentos)
-                                            .Include(x => x.Cliente)         
-                                            .FirstOrDefaultAsync(x => x.Id == id);
+                                           .Include(x => x.Procedimentos)
+                                           .Include(x => x.Pagamentos)
+                                           .Include(x => x.Cliente)
+                                           .FirstOrDefaultAsync(x => x.Id == id);
             return atendimento;
         }
     }

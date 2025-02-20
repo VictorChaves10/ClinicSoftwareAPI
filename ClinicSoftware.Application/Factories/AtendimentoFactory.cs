@@ -2,7 +2,6 @@
 using ClinicSoftware.Application.DTOs;
 using ClinicSoftware.Application.Interfaces;
 using ClinicSoftware.Domain.Entities.Atendimentos;
-using ClinicSoftware.Domain.Entities.Financeiro;
 using ClinicSoftware.Domain.Interfaces;
 
 namespace ClinicSoftware.Application.Factories

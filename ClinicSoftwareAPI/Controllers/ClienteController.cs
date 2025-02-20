@@ -65,12 +65,15 @@ public class ClienteController(IClienteService clienteService) : ControllerBase
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> Delete(long id)
     {
-        var clienteDto = await _clienteService.GetClienteById(id);
+        try
+        {
+            await _clienteService.Delete(id);
+            return Ok("Cliente foi removido com sucesso.");
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
 
-        if (clienteDto == null)
-            return NotFound($"Cliente não encontrado.");
-
-        await _clienteService.Delete(id);
-        return Ok($"Cliente foi removido com sucesso.");
     }
 }
