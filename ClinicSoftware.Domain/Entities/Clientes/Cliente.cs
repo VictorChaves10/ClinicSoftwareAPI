@@ -1,4 +1,6 @@
-﻿namespace ClinicSoftware.Domain.Entities.Clientes;
+﻿using ClinicSoftware.Domain.Entities.Enderecos;
+
+namespace ClinicSoftware.Domain.Entities.Clientes;
 
 public class Cliente
 {
@@ -6,7 +8,7 @@ public class Cliente
     public string Nome { get; private set; }
     public string Email { get; private set; }
     public string Telefone { get; private set; }
-    public string Endereco { get; private set; }
+    public Endereco Endereco { get; private set; }
     public string CPF { get; private set; }
     public DateTime? DataNascimento { get; private set; }
     public DateTime DataCadastro { get; private set; }
@@ -25,7 +27,7 @@ public class Cliente
             DataCadastro = DateTime.Now;
     }
 
-    public void Atualizar(string nome, string email, string telefone, string endereco, string cpf, DateTime? datanascimento)
+    public void Atualizar(string nome, string email, string telefone, Endereco endereco, string cpf, DateTime? datanascimento)
     {
         Nome = nome;
         Email = email;

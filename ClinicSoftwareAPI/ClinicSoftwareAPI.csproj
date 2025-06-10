@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClinicSoftware.CrossCutting\ClinicSoftware.CrossCutting.csproj" />
+    <ProjectReference Include="..\ClinicSoftware.Infrastructure\ClinicSoftware.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

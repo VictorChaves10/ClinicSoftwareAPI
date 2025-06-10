@@ -6,4 +6,8 @@
     <Nullable>Disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Pessoas\" />
+  </ItemGroup>
+
 </Project>
